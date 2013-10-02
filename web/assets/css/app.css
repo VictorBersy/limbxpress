@@ -1,0 +1,8 @@
+.welcome-message h1 {
+	text-align: center;
+}
+
+.first-user a {
+	color: white;
+	text-decoration: underline;
+}
