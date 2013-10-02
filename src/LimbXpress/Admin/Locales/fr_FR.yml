@@ -1,0 +1,4 @@
+homepage.welcome_message: "Bienvue sur LimbXpress ! Le framework simplifiant la création d'une API :)"
+homepage.first_user_part1: "Attention ! Vous êtes le premier utilisateur. "
+homepage.first_user_part2: "Voulez-vous enregistrer un administrateur dès maintenant ?"
+homepage.first_user_part3: " (Recommandé)"
