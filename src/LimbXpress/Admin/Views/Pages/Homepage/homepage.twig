@@ -1,0 +1,20 @@
+{% extends 'Templates/skeleton.twig' %}
+{% block content %}
+
+<div class="row">
+	<div class="large-12 columns welcome-message">
+		<h1>{{ 'homepage.welcome_message'|trans }}</h1>
+	</div>
+</div>
+
+<div class="row">
+	<div class="large-12 columns first-user">
+		<div data-alert class="alert-box alert">
+			{{ 'homepage.first_user_part1'|trans }}
+			<a href="#">{{ 'homepage.first_user_part2'|trans }}</a>
+			{{ 'homepage.first_user_part3'|trans }}
+		</div>
+	</div>
+</div>
+
+{% endblock %}

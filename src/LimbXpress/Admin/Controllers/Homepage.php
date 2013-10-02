@@ -15,6 +15,6 @@ class Homepage
     public function homepage(Application $app)
     {
         // render the homepage
-        return $app['twig']->render('pages/home/home.twig');
+        return $app['twig']->render('Pages/Homepage/homepage.twig');
     }
 }
