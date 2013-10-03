@@ -4,6 +4,7 @@ namespace LimbXpress\Admin\Config;
 use Silex\Application;
 use Silex\Provider;
 use Symfony\Component\Translation\Loader\YamlFileLoader;
+use Silex\Provider\FormServiceProvider;
 
 class Config
 {
@@ -32,5 +33,9 @@ class Config
           $translator->addResource('yaml', __DIR__.'/../Locales/fr_FR.yml', 'fr_FR');
           return $translator;
         }));
+        /* Form Service Provider */
+        $app->register(new FormServiceProvider(), array(
+          'form.secret' => 'f90fc0cf8e2a872c30eba8101e3de18d',
+        ));
     }
 }
