@@ -1,0 +1,48 @@
+{% extends 'Templates/skeleton.twig' %}
+{% block content %}
+
+<div class="row">
+	<div class="small-12 columns">
+
+		{{ form_start(registerFirstadmin) }}
+		  <fieldset>
+		    <legend>First Admin</legend>
+
+		    <div class="row">
+		      <div class="small-6 columns {% if not registerFirstadmin.username.vars.valid %}error{% endif %}">
+		        <label>{{ form_label(registerFirstadmin.username) }}</label>
+				{{ form_widget(registerFirstadmin.username) }}
+		        {% if not registerFirstadmin.username.vars.valid %}
+		        	<small>{{ form_errors(registerFirstadmin.username) }}</small>
+		        {% endif %}
+		      </div>
+		      <div class="small-6 columns {% if not registerFirstadmin.email.vars.valid %}error{% endif %}">
+		        <label>{{ form_label(registerFirstadmin.email) }}</label>
+			    {{ form_widget(registerFirstadmin.email) }}
+		        {% if not registerFirstadmin.email.vars.valid %}
+		        	<small>Invalid entry</small>
+		        {% endif %}
+		      </div>
+		    </div>
+
+		    <div class="row">
+		      <div class="small-6 columns {% if not registerFirstadmin.password.vars.valid %}error{% endif %}">
+		        <label>{{ form_label(registerFirstadmin.password) }}</label>
+				{{ form_widget(registerFirstadmin.password) }}
+		        {% if not registerFirstadmin.password.vars.valid %}
+		        	<small>Invalid entry</small>
+		        {% endif %}
+		      </div>
+		    </div>
+
+		    <div class="row">
+		    	<div class="small-12 columns">
+		    		<input type="submit" class="small expand button success" name="submit" />
+		    	</div>
+		    </div>
+
+		  </fieldset>
+		{{ form_end(registerFirstadmin) }}
+	</div>
+</div>
+{% endblock %}
