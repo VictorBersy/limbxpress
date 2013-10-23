@@ -33,8 +33,13 @@ class Register
             if ($form->isValid()) {
                 $data = $form->getData();
                 $isValid = $this->storeUser($data);
-                // redirect somewhere
-                //return $app->redirect($app['url_generator']->generate('register/firstadmin'));
+                if ($isValid === true) {
+                    return $app['twig']->render('Pages/Register/firstadmin.twig', array('registerFirstadmin' => $form->createView(), 'success' => true));
+                }
+                else {
+                    $errors = $isValid;
+                    return $app['twig']->render('Pages/Register/firstadmin.twig', array('registerFirstadmin' => $form->createView(), 'errors' => $errors));
+                }
             }
         }
 
@@ -52,14 +57,19 @@ class Register
         );
 
         $db = new DB\LiMongo('users');
-        try {
+        try
+        {
             $db->insert($user);
             $db->ensureIndex(
               array('username' => 1, 'email' => 1 ),
               array('unique' => true)
             );
-        } catch (\MongoCursorException $e) {
-            var_dump($e);
+            return true;
+        } 
+        catch (\MongoCursorException $e)
+        {
+            $data['errors']['Mongo'] = $e->doc;
+            return $data['errors'];
         }
     }
 }
