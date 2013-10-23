@@ -2,3 +2,5 @@ homepage.welcome_message: "Welcome on LimbXpress ! The framework who simplify th
 homepage.first_user_part1: "Caution! You're the first user. "
 homepage.first_user_part2: "Would you like to register an administrator right now ?"
 homepage.first_user_part3: " (Recommended)"
+
+firstAdmin.success: "User successfully registered !"
