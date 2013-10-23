@@ -3,6 +3,7 @@
 namespace LimbXpress\Admin\Controllers;
 
 use Silex\Application;
+use LimbXpress\Config\Database as DB;
 
 class Homepage
 {
@@ -15,6 +16,11 @@ class Homepage
     public function homepage(Application $app)
     {
         // render the homepage
-        return $app['twig']->render('Pages/Homepage/homepage.twig');
+        return $app['twig']->render('Pages/Homepage/homepage.twig', array('userExists' => $this->userExists()));
+    }
+
+    public function userExists() {
+        $db = new DB\LiMongo('users');
+        return $db->count() > 0;
     }
 }
