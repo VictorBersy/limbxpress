@@ -32,7 +32,7 @@ class Register
 
             if ($form->isValid()) {
                 $data = $form->getData();
-                $this->storeUser($data);
+                $isValid = $this->storeUser($data);
                 // redirect somewhere
                 //return $app->redirect($app['url_generator']->generate('register/firstadmin'));
             }
@@ -44,21 +44,22 @@ class Register
 
     public function storeUser($data) {
         extract($data);
-        $password_salt = openssl_random_pseudo_bytes(32);
-        $password_hash = sha1($password . $password_salt);
+        $password_hash = password_hash($password, PASSWORD_DEFAULT, array('cost' => 15));
         $user = array(
           'username'      => $username,
           'email'         => $email,
           'password_hash' => $password_hash,
-          'password_salt' => new \MongoBinData($password_salt),
         );
 
         $db = new DB\LiMongo('users');
-        $db->insert($user);
-        // Create unique indexes on email and username
-        $db->ensureIndex(
-            array('username' => 1, 'email' => 1 ),
-            array("unique" => true)
-        );
+        try {
+            $db->insert($user);
+            $db->ensureIndex(
+              array('username' => 1, 'email' => 1 ),
+              array('unique' => true)
+            );
+        } catch (\MongoCursorException $e) {
+            var_dump($e);
+        }
     }
 }
