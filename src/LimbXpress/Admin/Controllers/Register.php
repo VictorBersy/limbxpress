@@ -55,7 +55,7 @@ class Register
 
         $db = new DB\LiMongo('users');
         $db->insert($user);
-        // Creatine unique index on email and username
+        // Create unique indexes on email and username
         $db->ensureIndex(
             array('username' => 1, 'email' => 1 ),
             array("unique" => true)
