@@ -1,6 +1,28 @@
 {% extends 'Templates/skeleton.twig' %}
 {% block content %}
 
+{% if errors is defined %}
+{% for error in errors %}
+<div class="row">
+	<div class="large-12 columns">
+		<div data-alert="" class="alert-box alert">
+			{{ error.err }}
+		</div>
+	</div>
+</div>
+{% endfor %}
+{% endif %}
+
+{% if success is defined %}
+<div class="row">
+	<div class="large-12 columns">
+		<div data-alert="" class="alert-box success">
+			{{ 'firstAdmin.success'|trans }}
+		</div>
+	</div>
+</div>
+{% endif %}
+
 <div class="row">
 	<div class="small-12 columns">
 
