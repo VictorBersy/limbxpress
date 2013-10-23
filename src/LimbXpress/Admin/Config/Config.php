@@ -12,7 +12,7 @@ class Config
     static public function init(Application $app)
     {
         /* Validator Service Provider */
-        $app->register(new Silex\Provider\ValidatorServiceProvider());
+        $app->register(new \Silex\Provider\ValidatorServiceProvider());
         
         /* Twig Service Provider */
         $app->register(new \Silex\Provider\TwigServiceProvider(), array(
